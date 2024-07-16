@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+
+<p>
+<strong> Name:</strong>
+<%=@todo.name %>
+</p>
+
+<%= @tasks.each do |task| %>
+  <p><%= task.title %> </p>
+  <%= form_for @task do |f| %>
+    <%= f.check_box :done, :value=> task.done%>
+     
+     <%= f.hidden_field :todo_id, :value=> @todo.id%></p>
+     <%= f.submit "ADd Task" %>
+  <% end %>  
+<% end %>
+
+<%= form_for @task do |f| %>
+  <p> <%= f.text_field :title%></p>
+   
+   <%= f.hidden_field :todo_id, :value=> @todo.id%></p>
+   <%= f.submit "ADd Task" %>
+<% end %>  
+
+
+<div>
+  <%= link_to "Edit this todo", edit_todo_path(@todo) %> |
+  <%= link_to "Back to todos", todos_path %>
+
+  <%= button_to "Destroy this todo", @todo, method: :delete %>
+</div>
